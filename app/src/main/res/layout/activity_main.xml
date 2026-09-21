@@ -1,110 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
     android:background="#F5F5F5">
 
-    <TextView
-        android:id="@+id/txtTitle"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Pantry Management"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="#212121"
-        android:paddingBottom="16dp"
-        tools:ignore="HardcodedText" />
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-    <EditText
-        android:id="@+id/edtIngredientName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Ingredient name"
-        android:inputType="textCapSentences"
-        android:padding="12dp"
-        tools:ignore="HardcodedText" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
 
-    <!-- Quantity -->
-    <EditText
-        android:id="@+id/edtQuantity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:hint="Quantity"
-        android:inputType="numberDecimal"
-        android:padding="12dp"
-        tools:ignore="HardcodedText" />
+            <TextView
+                android:id="@+id/txtAppTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Smart Pantry Manager"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:textColor="#212121" />
 
-    <Spinner
-        android:id="@+id/spinnerUnit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp" />
+            <TextView
+                android:id="@+id/txtWelcome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="What can you cook today?"
+                android:textSize="18sp"
+                android:textColor="#555555" />
 
-    <EditText
-        android:id="@+id/edtExpiryDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:hint="Expiry date (optional)"
-        android:focusable="false"
-        android:clickable="true"
-        android:padding="12dp"
-        tools:ignore="HardcodedText,KeyboardInaccessibleWidget" />
+            <Button
+                android:id="@+id/btnFindRecipes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Find Recipes"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/txtPantrySummaryTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="Your Pantry"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#212121" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="16dp"
+                    android:background="#FFFFFF">
+
+                    <TextView
+                        android:id="@+id/txtIngredientCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="12"
+                        android:textSize="28sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ingredients"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="10dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="16dp"
+                    android:background="#FFFFFF">
+
+                    <TextView
+                        android:id="@+id/txtExpiringCount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2"
+                        android:textSize="28sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Expiring Soon"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txtRecentItems"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="Recent Pantry Items"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtRice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:padding="16dp"
+                android:background="#FFFFFF"
+                android:text="Rice                 2 kg"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/txtChicken"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:padding="16dp"
+                android:background="#FFFFFF"
+                android:text="Chicken             500 g"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/txtMilk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:padding="16dp"
+                android:background="#FFFFFF"
+                android:text="Milk                    1 L"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal">
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:background="#FFFFFF">
 
         <Button
-            android:id="@+id/btnAdd"
+            android:id="@+id/btnHome"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Add"
-            tools:ignore="HardcodedText" />
+            android:text="Home" />
 
         <Button
-            android:id="@+id/btnEdit"
+            android:id="@+id/btnPantry"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:layout_marginStart="8dp"
-            android:text="Edit"
-            tools:ignore="ButtonStyle" />
+            android:text="Pantry" />
 
         <Button
-            android:id="@+id/btnDelete"
+            android:id="@+id/btnRecipes"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:layout_marginStart="8dp"
-            android:text="Delete"
-            tools:ignore="HardcodedText" />
+            android:text="Recipes" />
 
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/txtItemsTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Pantry Items"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        tools:ignore="HardcodedText" />
-
-    <ListView
-        android:id="@+id/listPantryItems"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_marginTop="8dp" />
 
 </LinearLayout>
