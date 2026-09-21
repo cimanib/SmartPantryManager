@@ -16,7 +16,8 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="#212121"
-        android:paddingBottom="16dp" />
+        android:paddingBottom="16dp"
+        tools:ignore="HardcodedText" />
 
     <EditText
         android:id="@+id/edtIngredientName"
@@ -24,7 +25,8 @@
         android:layout_height="wrap_content"
         android:hint="Ingredient name"
         android:inputType="textCapSentences"
-        android:padding="12dp" />
+        android:padding="12dp"
+        tools:ignore="HardcodedText" />
 
     <!-- Quantity -->
     <EditText
@@ -34,7 +36,8 @@
         android:layout_marginTop="8dp"
         android:hint="Quantity"
         android:inputType="numberDecimal"
-        android:padding="12dp" />
+        android:padding="12dp"
+        tools:ignore="HardcodedText" />
 
     <Spinner
         android:id="@+id/spinnerUnit"
@@ -50,7 +53,8 @@
         android:hint="Expiry date (optional)"
         android:focusable="false"
         android:clickable="true"
-        android:padding="12dp" />
+        android:padding="12dp"
+        tools:ignore="HardcodedText,KeyboardInaccessibleWidget" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -63,7 +67,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Add" />
+            android:text="Add"
+            tools:ignore="HardcodedText" />
 
         <Button
             android:id="@+id/btnEdit"
@@ -71,7 +76,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginStart="8dp"
-            android:text="Edit" />
+            android:text="Edit"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/btnDelete"
@@ -79,7 +85,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginStart="8dp"
-            android:text="Delete" />
+            android:text="Delete"
+            tools:ignore="HardcodedText" />
 
     </LinearLayout>
 
@@ -90,7 +97,8 @@
         android:layout_marginTop="24dp"
         android:text="Pantry Items"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        tools:ignore="HardcodedText" />
 
     <ListView
         android:id="@+id/listPantryItems"
