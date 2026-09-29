@@ -10,49 +10,55 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
 
 
-    Button findindRecipes,home, recipes,pantry;
+    Button btnSuggestedRecipes,btnPantry,btnRecipes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        findindRecipes =findViewById(R.id.btnFindRecipes);
-        home =findViewById(R.id.btnHome);
-        recipes =findViewById(R.id.btnRecipes);
-        pantry =findViewById(R.id.btnPantry);
+        btnPantry = findViewById(R.id.btnPantry);
+        btnPantry.setOnClickListener(v -> {
 
+            Intent intent = new Intent(MainActivity.this, PantryActivity.class);
 
-        findindRecipes.setOnClickListener(v->{
+            startActivity(intent);
+        });
+
+        btnSuggestedRecipes = findViewById(R.id.btnSuggestedRecipes);
+        btnSuggestedRecipes.setOnClickListener(v -> {
+
             Intent intent = new Intent(
                     MainActivity.this,
-                    RecipesActivity.class
+                    SuggestedRecipes.class
             );
 
             startActivity(intent);
         });
 
-        recipes.setOnClickListener(v->{
-            Intent intent = new Intent(
-                    MainActivity.this,
-                    RecipesActivity.class
-            );
+        btnRecipes = findViewById(R.id.btnRecipes);
 
-            startActivity(intent);
-
-        });
-
-        pantry.setOnClickListener(v->{
+        btnRecipes.setOnClickListener(v -> {
 
             Intent intent = new Intent(
                     MainActivity.this,
-                    PantryActivity.class
+                    RecipeCollection.class
             );
 
             startActivity(intent);
-
         });
 
+        Button btnSettings =
+                findViewById(R.id.btnSettings);
+
+        btnSettings.setOnClickListener(v -> {
+
+            Intent intent = new Intent(
+                    MainActivity.this,
+                    Settings.class
+            );
+
+            startActivity(intent);
+        });
     }
 }

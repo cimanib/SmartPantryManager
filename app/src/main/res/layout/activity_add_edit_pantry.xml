@@ -7,22 +7,22 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
-    <!-- Main content -->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <!-- Toolbar -->
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            android:title="Smart Pantry Manager"
+            android:title="Add Pantry Item"
             android:titleTextColor="@android:color/white" />
 
-        <!-- Home content -->
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -35,50 +35,82 @@
                 android:padding="24dp">
 
                 <TextView
-                    android:id="@+id/tvWelcome"
+                    android:id="@+id/tvAddEditTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Smart Pantry Manager"
-                    android:textSize="28sp"
+                    android:text="Add Pantry Item"
+                    android:textSize="26sp"
                     android:textStyle="bold"
-                    android:gravity="center"
-                    android:layout_marginBottom="8dp" />
+                    android:layout_marginBottom="24dp" />
 
                 <TextView
-                    android:id="@+id/tvHomeDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Manage your pantry and discover recipes you can make."
-                    android:textSize="16sp"
-                    android:gravity="center"
-                    android:layout_marginBottom="32dp" />
+                    android:text="Ingredient Name"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/etIngredientName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="e.g. Chicken"
+                    android:inputType="text"
+                    android:layout_marginBottom="16dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Quantity"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/etQuantity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="e.g. 2"
+                    android:inputType="numberDecimal"
+                    android:layout_marginBottom="16dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Unit"
+                    android:textStyle="bold" />
+
+                <Spinner
+                    android:id="@+id/spinnerUnit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:entries="@array/unit_options"
+                    android:spinnerMode="dropdown"
+                    android:layout_marginBottom="16dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Expiry Date (Optional)"
+                    android:textStyle="bold" />
+
+                <EditText
+                    android:id="@+id/etExpiryDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="YYYY-MM-DD"
+                    android:inputType="date"
+                    android:layout_marginBottom="24dp" />
 
                 <Button
-                    android:id="@+id/btnPantry"
+                    android:id="@+id/btnSavePantryItem"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="My Pantry"
+                    android:text="Save Item"
                     android:layout_marginBottom="12dp" />
 
                 <Button
-                    android:id="@+id/btnSuggestedRecipes"
+                    android:id="@+id/btnDeletePantryItem"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Suggested Recipes"
-                    android:layout_marginBottom="12dp" />
-
-                <Button
-                    android:id="@+id/btnRecipes"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Recipe Collection"
-                    android:layout_marginBottom="12dp" />
-
-                <Button
-                    android:id="@+id/btnSettings"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Settings" />
+                    android:text="Delete Item" />
 
             </LinearLayout>
 
@@ -86,7 +118,6 @@
 
     </LinearLayout>
 
-    <!-- Navigation drawer -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationView"
         android:layout_width="280dp"

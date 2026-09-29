@@ -4,13 +4,16 @@ import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
-public class RecipesActivity extends AppCompatActivity {
+public class ItemRecipe extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_recipes);
+        setContentView(R.layout.activity_item_recipe);
 
     }
 }

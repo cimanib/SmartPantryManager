@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -19,10 +20,10 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            android:title="Smart Pantry Manager"
+            android:title="Recipe Details"
             android:titleTextColor="@android:color/white" />
 
-        <!-- Home content -->
+        <!-- Recipe details -->
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -35,50 +36,43 @@
                 android:padding="24dp">
 
                 <TextView
-                    android:id="@+id/tvWelcome"
+                    android:id="@+id/tvRecipeName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Smart Pantry Manager"
                     android:textSize="28sp"
                     android:textStyle="bold"
-                    android:gravity="center"
+                    android:layout_marginBottom="24dp" />
+
+                <TextView
+                    android:id="@+id/tvIngredientsTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ingredients"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
                     android:layout_marginBottom="8dp" />
 
                 <TextView
-                    android:id="@+id/tvHomeDescription"
+                    android:id="@+id/tvRecipeIngredients"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Manage your pantry and discover recipes you can make."
                     android:textSize="16sp"
-                    android:gravity="center"
-                    android:layout_marginBottom="32dp" />
+                    android:layout_marginBottom="24dp" />
 
-                <Button
-                    android:id="@+id/btnPantry"
+                <TextView
+                    android:id="@+id/tvMethodTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="My Pantry"
-                    android:layout_marginBottom="12dp" />
+                    android:text="Preparation"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp" />
 
-                <Button
-                    android:id="@+id/btnSuggestedRecipes"
+                <TextView
+                    android:id="@+id/tvRecipeMethod"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Suggested Recipes"
-                    android:layout_marginBottom="12dp" />
-
-                <Button
-                    android:id="@+id/btnRecipes"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Recipe Collection"
-                    android:layout_marginBottom="12dp" />
-
-                <Button
-                    android:id="@+id/btnSettings"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Settings" />
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
