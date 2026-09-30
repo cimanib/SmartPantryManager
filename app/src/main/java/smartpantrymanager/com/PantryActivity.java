@@ -1,17 +1,11 @@
 package smartpantrymanager.com;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,19 +13,29 @@ import java.util.List;
 
 public class PantryActivity extends BaseActivity {
 
+    private DatabaseHelper databaseHelper;
     private RecyclerView recyclerPantry;
     private TextView tvEmptyPantry;
 
-    private DatabaseHelper databaseHelper;
-    private PantryAdapter pantryAdapter;
-
-    @SuppressLint("MissingSuperCall")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_pantry);
+
         setupNavigation();
-        Button btnAddPantryItem = findViewById(R.id.btnAddPantryItem);
+
+        databaseHelper = new DatabaseHelper(this);
+
+        recyclerPantry = findViewById(R.id.recyclerPantry);
+        tvEmptyPantry = findViewById(R.id.tvEmptyPantry);
+
+        Button btnAddPantryItem =
+                findViewById(R.id.btnAddPantryItem);
+
+        recyclerPantry.setLayoutManager(
+                new LinearLayoutManager(this)
+        );
 
         btnAddPantryItem.setOnClickListener(v -> {
 
@@ -43,15 +47,20 @@ public class PantryActivity extends BaseActivity {
             startActivity(intent);
         });
 
-        recyclerPantry = findViewById(R.id.recyclerPantry);
-        tvEmptyPantry = findViewById(R.id.tvEmptyPantry);
-        databaseHelper = new DatabaseHelper(this);
-
-        recyclerPantry.setLayoutManager(
-                new LinearLayoutManager(this)
-        );
         loadPantryItems();
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Reload the database every time
+        // we return to the Pantry screen
+        if (databaseHelper != null) {
+            loadPantryItems();
+        }
+    }
+
     private void loadPantryItems() {
 
         List<PantryItem> pantryItems =
@@ -60,19 +69,20 @@ public class PantryActivity extends BaseActivity {
         if (pantryItems.isEmpty()) {
 
             tvEmptyPantry.setVisibility(View.VISIBLE);
-
             recyclerPantry.setVisibility(View.GONE);
 
         } else {
 
             tvEmptyPantry.setVisibility(View.GONE);
-
             recyclerPantry.setVisibility(View.VISIBLE);
 
-            pantryAdapter =
-                    new PantryAdapter(pantryItems);
+            PantryAdapter adapter =
+                    new PantryAdapter(
+                            this,
+                            pantryItems
+                    );
 
-            recyclerPantry.setAdapter(pantryAdapter);
+            recyclerPantry.setAdapter(adapter);
         }
     }
 }

@@ -1,5 +1,7 @@
 package smartpantrymanager.com;
 
+
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -9,7 +11,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "smart_pantry.db";
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 5;
 
     // Pantry table
     public static final String TABLE_PANTRY = "pantry_items";
@@ -154,8 +156,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
     public java.util.List<PantryItem> getAllPantryItems() {
 
-        java.util.List<PantryItem> pantryItems =
-                new java.util.ArrayList<>();
+        java.util.List<PantryItem> pantryItems = new java.util.ArrayList<>();
 
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -173,8 +174,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
             do {
 
-                int id = cursor.getInt(
-                        cursor.getColumnIndexOrThrow(COLUMN_PANTRY_ID)
+                int id = cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_PANTRY_ID)
                 );
 
                 String ingredientName = cursor.getString(
@@ -293,6 +293,63 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
 
         return recipes;
+    }
+    public PantryItem getPantryItem(int id) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(
+                TABLE_PANTRY,
+                null,
+                COLUMN_PANTRY_ID  + " = ?",
+                new String[]{String.valueOf(id)},
+                null,
+                null,
+                null
+        );
+
+        PantryItem item = null;
+
+        if (cursor.moveToFirst()) {
+
+            String ingredientName = cursor.getString(
+                    cursor.getColumnIndexOrThrow(COLUMN_INGREDIENT_NAME)
+            );
+
+            double quantity = cursor.getDouble(
+                    cursor.getColumnIndexOrThrow(COLUMN_QUANTITY)
+            );
+
+            String unit = cursor.getString(
+                    cursor.getColumnIndexOrThrow(COLUMN_UNIT)
+            );
+
+            String expiryDate = cursor.getString(
+                    cursor.getColumnIndexOrThrow(COLUMN_EXPIRY_DATE)
+            );
+
+            item = new PantryItem(
+                    id,
+                    ingredientName,
+                    quantity,
+                    unit,
+                    expiryDate
+            );
+        }
+
+        cursor.close();
+
+        return item;
+    }
+    public int deletePantryItem(int id) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        return db.delete(
+                TABLE_PANTRY,
+                COLUMN_PANTRY_ID  + " = ?",
+                new String[]{String.valueOf(id)}
+        );
     }
     private java.util.List<RecipeIngredient> getRecipeIngredients(
             SQLiteDatabase db,

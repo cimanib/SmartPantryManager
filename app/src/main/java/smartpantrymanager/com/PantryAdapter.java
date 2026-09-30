@@ -1,5 +1,8 @@
 package smartpantrymanager.com;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,12 +13,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class PantryAdapter
-        extends RecyclerView.Adapter<PantryAdapter.PantryViewHolder> {
+public class PantryAdapter extends RecyclerView.Adapter<PantryAdapter.PantryViewHolder> {
 
+    private Context context;
     private List<PantryItem> pantryItems;
 
-    public PantryAdapter(List<PantryItem> pantryItems) {
+    public PantryAdapter(Context context, List<PantryItem> pantryItems) {
+        this.context = context;
         this.pantryItems = pantryItems;
     }
 
@@ -25,44 +29,61 @@ public class PantryAdapter
             @NonNull ViewGroup parent,
             int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(
-                        R.layout.activity_item_pantry,
-                        parent,
-                        false
-                );
+        View view = LayoutInflater.from(context).inflate(
+                R.layout.activity_item_pantry,
+                parent,
+                false
+        );
 
         return new PantryViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(
-            @NonNull PantryViewHolder holder,
-            int position) {
+    public void onBindViewHolder(@NonNull PantryViewHolder holder, int position) {
 
         PantryItem item = pantryItems.get(position);
-
         holder.tvIngredientName.setText(
                 item.getIngredientName()
         );
 
+
         holder.tvQuantity.setText(
-                item.getQuantity() + " " + item.getUnit()
+                "Quantity: " +
+                        item.getQuantity() +
+                        " " +
+                        item.getUnit()
         );
 
         if (item.getExpiryDate() != null &&
                 !item.getExpiryDate().isEmpty()) {
 
             holder.tvExpiryDate.setText(
-                    "Expires: " + item.getExpiryDate()
+                    "Expiry Date: " +
+                            item.getExpiryDate()
             );
 
         } else {
 
             holder.tvExpiryDate.setText(
-                    "No expiry date"
+                    "Expiry Date: Not specified"
             );
         }
+
+        holder.itemView.setOnClickListener(v -> {
+
+            Intent intent = new Intent(
+                    context,
+                    AddEditPantry.class
+            );
+
+            intent.putExtra(
+                    "pantry_id",
+                    item.getId()
+            );
+
+            context.startActivity(intent);
+        });
     }
 
     @Override
@@ -70,16 +91,13 @@ public class PantryAdapter
         return pantryItems.size();
     }
 
-
-    public static class PantryViewHolder
-            extends RecyclerView.ViewHolder {
+    public static class PantryViewHolder extends RecyclerView.ViewHolder {
 
         TextView tvIngredientName;
         TextView tvQuantity;
         TextView tvExpiryDate;
 
         public PantryViewHolder(@NonNull View itemView) {
-
             super(itemView);
 
             tvIngredientName =
